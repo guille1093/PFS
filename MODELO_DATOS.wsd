@@ -1,0 +1,124 @@
+@startuml modelo_de_datos
+
+!define ENTITY class
+
+
+ENTITY Cliente {
+  ClienteID : int PRIMARY_KEY
+  Nombre : string
+  Apellido : string
+  DNI : string
+  FechaNacimiento : date
+  Telefono : string
+  CorreoElectronico : string
+  Direccion : string
+  SexoID : int
+  EstadoID : int
+  PaisID : int
+}
+
+ENTITY Sexo {
+  SexoID : int PRIMARY_KEY
+  Sexo : string
+}
+
+ENTITY EstadoCliente {
+  EstadoID : int PRIMARY_KEY
+  NombreEstado : string
+}
+
+ENTITY Pais {
+  PaisID : int PRIMARY_KEY
+  NombrePais : string
+}
+
+ENTITY Usuario {
+  UsuarioID : int PRIMARY_KEY
+  NombreUsuario : string
+  Contraseña : string
+  RolID : int
+}
+
+ENTITY Venta {
+  VentaID : int PRIMARY_KEY
+  ClienteID : int
+  FechaVenta : date
+  EstadoID : int
+  UsuarioID : int
+}
+
+ENTITY Rol {
+  RolID : int PRIMARY_KEY
+  NombreRol : string
+}
+
+ENTITY Permiso {
+  PermisoID : int PRIMARY_KEY
+  NombrePermiso : string
+}
+
+ENTITY EstadoVenta {
+  EstadoID : int PRIMARY_KEY
+  NombreEstado : string
+}
+
+ENTITY EstadoVenta {
+  EstadoID : int PRIMARY_KEY
+  NombreEstado : string
+}
+
+ENTITY Acompanante {
+  AcompananteID : int PRIMARY_KEY
+  VentaID : int
+  ClienteID : int
+}
+
+ENTITY Pago {
+  PagoID : int PRIMARY_KEY
+  VentaID : int
+  Monto : decimal
+  FechaPago : date
+  MetodoPago : string
+}
+
+ENTITY Empresa {
+  EmpresaID : int PRIMARY_KEY
+  NombreEmpresa : string
+  Direccion : string
+  Telefono : string
+  CorreoElectronico : string
+  Logo : string
+    
+}
+
+ENTITY Auditoria {
+  AuditoriaID : int PRIMARY_KEY
+  FechaAuditoria : datetime
+  UsuarioID : int
+  Accion : string
+}
+
+ENTITY Notificacion {
+  NotificacionID : int PRIMARY_KEY
+  FechaNotificacion : datetime
+  Mensaje : string
+}
+
+Cliente }|-- Pais
+Cliente --|{ Venta
+Cliente }|-- Sexo
+Cliente -- EstadoCliente
+
+Usuario --|{ Venta
+Usuario }|-- Rol
+Rol --|{ Permiso
+Empresa --|{ Auditoria
+Empresa --|{ Notificacion
+Venta -- EstadoVenta
+
+Empresa --|{ Usuario
+
+Acompanante -- Venta
+Pago -- Venta
+
+@enduml
