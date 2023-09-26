@@ -1,10 +1,11 @@
 @startuml modelo_de_datos
 
-!define ENTITY class
 
+hide circle
+skinparam linetype ortho
 
 ENTITY Cliente {
-  ClienteID : int PRIMARY_KEY
+  * ClienteID : int PRIMARY_KEY
   Nombre : string
   Apellido : string
   DNI : string
@@ -32,12 +33,7 @@ ENTITY Pais {
   NombrePais : string
 }
 
-ENTITY Usuario {
-  UsuarioID : int PRIMARY_KEY
-  NombreUsuario : string
-  Contraseña : string
-  RolID : int
-}
+
 
 ENTITY Venta {
   VentaID : int PRIMARY_KEY
@@ -45,6 +41,21 @@ ENTITY Venta {
   FechaVenta : date
   EstadoID : int
   UsuarioID : int
+}
+
+ENTITY Pago {
+  PagoID : int PRIMARY_KEY
+  VentaID : int
+  Monto : decimal
+  FechaPago : date
+  MetodoPago : string
+}
+
+ENTITY Usuario {
+  UsuarioID : int PRIMARY_KEY
+  NombreUsuario : string
+  Contraseña : string
+  RolID : int
 }
 
 ENTITY Rol {
@@ -73,13 +84,7 @@ ENTITY Acompanante {
   ClienteID : int
 }
 
-ENTITY Pago {
-  PagoID : int PRIMARY_KEY
-  VentaID : int
-  Monto : decimal
-  FechaPago : date
-  MetodoPago : string
-}
+
 
 ENTITY Empresa {
   EmpresaID : int PRIMARY_KEY
