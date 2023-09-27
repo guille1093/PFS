@@ -191,12 +191,11 @@ Usuario --{ AuditoriaUsuario
 Rol --{ AuditoriaRol
 Permiso --{ AuditoriaPermiso
 Empresa --{ AuditoriaEmpresa
-PaquetesTuristicos }-- Acompanantes
+Venta --{ Acompanantes
 Clientes }-- Acompanantes
 Usuario }|-- Rol
 Rol --|{ Permiso
 Empresa --{ Usuario
 Notificacion }-- Usuario
-
 
 @enduml
